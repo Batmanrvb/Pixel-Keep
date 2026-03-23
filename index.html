@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PIXEL KEEP — Retro Game Vault</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+
+<header class="header">
+  <div class="header-top">
+    <div class="brand-logos">
+      <div class="logo-pill iiser-pill">
+        <img src="IISER-K_Logo.png" alt="IISER Kolkata" class="inst-logo"/>
+        <span class="inst-name">IISER KOLKATA</span>
+      </div>
+      <div class="logo-divider">x</div>
+      <div class="logo-pill slashdot-pill">
+        <img src="slashdot_logo.jpg" alt="Slashdot Club" class="inst-logo slashdot-img"/>
+      </div>
+    </div>
+    <div class="site-title-wrap">
+      <div class="site-sprite"></div>
+      <div><div class="site-title">PIXEL KEEP</div><div class="site-tagline">RETRO GAME VAULT</div></div>
+    </div>
+    <div class="header-score">
+      <span class="life">&#9829;</span><span class="life">&#9829;</span><span class="life">&#9829;</span>
+      <span class="score-lbl">ROMS:</span><span class="score-val" id="score-val">000</span>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <button class="nav-btn active" data-page="home" onclick="showPage('home')">HOME</button>
+    <button class="nav-btn" data-page="emulator" onclick="showPage('emulator')">PLAY</button>
+    <button class="nav-btn" data-page="about" onclick="showPage('about')">ABOUT</button>
+    <button class="nav-btn" data-page="tech" onclick="showPage('tech')">TECH</button>
+    <button class="nav-btn" data-page="team" onclick="showPage('team')">TEAM</button>
+    <button class="nav-btn" data-page="contact" onclick="showPage('contact')">CONTACT</button>
+  </nav>
+</header>
+
+<main id="main-content">
+
+  <!-- HOME -->
+  <section class="page active" id="page-home">
+    <div class="hero-map">
+      <div class="map-border"><div class="map-inner">
+        <div class="title-screen">
+          <div class="title-line t1">PIXEL KEEP</div>
+          <div class="title-line t2">BROWSER RETRO EMULATOR</div>
+          <div class="title-line t3">NES . SNES . GB . GBA</div>
+          <div class="press-start">-- PRESS START --</div>
+        </div>
+        <div class="map-deco">
+          <div class="cloud c1">&#9729;</div><div class="cloud c2">&#9729;</div>
+          <div class="tree tr1">&#9824;</div><div class="tree tr2">&#9824;</div><div class="tree tr3">&#9824;</div>
+          <div class="castle-deco">&#127984;</div>
+          <div class="walker">&#129497;</div>
+        </div>
+      </div></div>
+    </div>
+    <div class="home-intro">
+      <div class="intro-box"><div class="intro-icon">&#127918;</div><h3>PLAY CLASSICS</h3><p>Load any NES, SNES, Game Boy, or GBA ROM and play instantly in your browser.</p></div>
+      <div class="intro-box"><div class="intro-icon">&#128193;</div><h3>YOUR LIBRARY</h3><p>Upload your legally-owned ROM files. Saved automatically in your browser.</p></div>
+      <div class="intro-box"><div class="intro-icon">&#9000;&#65039;</div><h3>FULL CONTROLS</h3><p>Keyboard controls out of the box. Remap any button inside the emulator.</p></div>
+      <div class="intro-box"><div class="intro-icon">&#127760;</div><h3>100% BROWSER</h3><p>No backend, no server, no account. Pure HTML + JS on your device.</p></div>
+    </div>
+    <div class="home-cta">
+      <button class="pixel-btn primary big-btn" onclick="showPage('emulator')">&#9654; START PLAYING</button>
+      <button class="pixel-btn secondary big-btn" onclick="showPage('about')">LEARN MORE</button>
+    </div>
+    <div class="presented-by">
+      <span class="pb-label">PRESENTED BY</span>
+      <div class="pb-logos">
+        <img src="IISER-K_Logo.png" alt="IISER Kolkata" class="pb-logo pb-iiser"/>
+        <img src="slashdot_logo.jpg" alt="Slashdot Club" class="pb-logo pb-slashdot"/>
+      </div>
+      <span class="pb-sub">A SLASHDOT CLUB x IISER KOLKATA PROJECT</span>
+    </div>
+  </section>
+
+  <!-- PLAY -->
+  <section class="page" id="page-emulator">
+    <div class="page-heading"><span class="ph-b">===</span><span class="ph-t">GAME SELECT</span><span class="ph-b">===</span></div>
+    <div class="upload-zone-wrap">
+      <div class="zone-window" id="dropzone">
+        <div class="window-titlebar">
+          <span class="win-dot r"></span><span class="win-dot y"></span><span class="win-dot g"></span>
+          <span class="win-title">FILE_SELECT.EXE</span>
+        </div>
+        <div class="window-body">
+          <div class="floppy"><div class="floppy-label">ROM</div><div class="floppy-slot"></div></div>
+          <div class="upload-info">
+            <p class="upload-head">DROP ROM FILE HERE</p>
+            <p class="upload-sub">.NES .SFC .SMC .GB .GBC .GBA</p>
+            <label class="pixel-btn primary">[ SELECT FILE ]<input type="file" id="rom-input" accept=".nes,.sfc,.smc,.gb,.gbc,.gba" hidden/></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="filter-strip">
+      <button class="filter-btn active" data-filter="all" onclick="setFilter(this,'all')">ALL</button>
+      <button class="filter-btn" data-filter="nes" onclick="setFilter(this,'nes')">NES</button>
+      <button class="filter-btn" data-filter="snes" onclick="setFilter(this,'snes')">SNES</button>
+      <button class="filter-btn" data-filter="gb" onclick="setFilter(this,'gb')">GAME BOY</button>
+      <button class="filter-btn" data-filter="gba" onclick="setFilter(this,'gba')">GBA</button>
+    </div>
+    <div class="game-grid" id="game-grid"></div>
+    <div class="page-heading bottom"><span class="ph-b">===</span><span class="ph-end" id="page-info">0 TITLES LOADED</span><span class="ph-b">===</span></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="page" id="page-about">
+    <div class="page-heading"><span class="ph-b">===</span><span class="ph-t">ABOUT PIXEL KEEP</span><span class="ph-b">===</span></div>
+    <div class="content-layout">
+      <div class="content-main">
+        <div class="story-card"><div class="story-num">01</div><h2>THE PURPOSE</h2>
+          <p>PIXEL KEEP is a browser-based retro game emulator that lets you play classic console games directly in your web browser with no downloads, no plugins, no accounts needed.</p>
+          <p>Built for the Slashdot Club x IISER Kolkata web development competition, this project showcases how modern web APIs and open-source emulation engines can bring classic gaming to any browser.</p>
+        </div>
+        <div class="story-card"><div class="story-num">02</div><h2>THE CONCEPT</h2>
+          <p>The theme is rooted in nostalgia. The pixel art aesthetic, 8-bit typography, NES-palette color scheme, and retro UI elements mirror the era these games come from.</p>
+          <p>PIXEL KEEP evokes a castle vault where precious pixel art treasures are stored. Your ROM library is your personal keep, guarded locally in your browser, never uploaded to any server.</p>
+        </div>
+        <div class="story-card"><div class="story-num">03</div><h2>THE MISSION</h2>
+          <p>Video game preservation matters. Classic games from the NES, SNES, Game Boy, and GBA eras represent irreplaceable digital cultural heritage. PIXEL KEEP makes it easy to experience these through legally owned ROMs via the open web.</p>
+        </div>
+      </div>
+      <div class="content-side">
+        <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">SYSTEMS<br>SUPPORTED</div></div>
+        <div class="stat-card"><div class="stat-num">inf</div><div class="stat-label">ROMS YOU<br>CAN LOAD</div></div>
+        <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">INSTALLS<br>REQUIRED</div></div>
+        <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">RUNS IN<br>BROWSER</div></div>
+        <div class="systems-badges">
+          <span class="sbadge nes-b">NES</span><span class="sbadge snes-b">SNES</span>
+          <span class="sbadge gb-b">GAME BOY</span><span class="sbadge gba-b">GBA</span>
+        </div>
+      </div>
+    </div>
+    <div class="page-heading bottom"><span class="ph-b">==================</span></div>
+  </section>
+
+  <!-- TECH -->
+  <section class="page" id="page-tech">
+    <div class="page-heading"><span class="ph-b">===</span><span class="ph-t">TECH STACK</span><span class="ph-b">===</span></div>
+    <div class="tech-intro"><p>PIXEL KEEP is built entirely with open web technologies. No frameworks, no build tools. Pure, portable, and deployable on any static host including GitHub Pages.</p></div>
+    <div class="tech-grid">
+      <div class="tech-card"><div class="tech-icon">&#127760;</div><div class="tech-name">HTML5</div><div class="tech-ver">Semantic Markup</div><p class="tech-desc">Entire site in a single HTML file with CSS-toggled sections. No build step needed.</p></div>
+      <div class="tech-card"><div class="tech-icon">&#127912;</div><div class="tech-name">CSS3</div><div class="tech-ver">Custom Props + Animations</div><p class="tech-desc">Pure CSS with custom properties for NES-palette theming. Pixel-perfect box-shadow borders and keyframe animations.</p></div>
+      <div class="tech-card"><div class="tech-icon">&#9889;</div><div class="tech-name">JavaScript</div><div class="tech-ver">Vanilla ES5/ES6</div><p class="tech-desc">All app logic written in plain JS. No jQuery, no React, no bundler required.</p></div>
+      <div class="tech-card highlight-tech"><div class="tech-icon">&#127918;</div><div class="tech-name">EmulatorJS</div><div class="tech-ver">cdn.emulatorjs.org/latest</div><p class="tech-desc">Open-source browser emulator using RetroArch cores compiled to WebAssembly. Handles CPU, GPU, and audio for NES, SNES, GB, GBA.</p></div>
+      <div class="tech-card"><div class="tech-icon">&#128190;</div><div class="tech-name">Web Storage API</div><div class="tech-ver">localStorage</div><p class="tech-desc">ROM files are base64-encoded and saved in localStorage so your library persists across sessions.</p></div>
+      <div class="tech-card"><div class="tech-icon">&#127754;</div><div class="tech-name">Canvas API</div><div class="tech-ver">HTML5 Canvas</div><p class="tech-desc">The star field background is rendered via Canvas API at 60fps with sinusoidal brightness animation.</p></div>
+      <div class="tech-card"><div class="tech-icon">&#128230;</div><div class="tech-name">File + Blob APIs</div><div class="tech-ver">FileReader + Object URLs</div><p class="tech-desc">ROMs read with FileReader, stored as base64, decoded to Blob URLs at play time. Everything stays client-side.</p></div>
+      <div class="tech-card"><div class="tech-icon">&#128640;</div><div class="tech-name">GitHub Pages</div><div class="tech-ver">Static Hosting</div><p class="tech-desc">One HTML file plus two images. No build pipeline, no server. Push to main and it's live.</p></div>
+    </div>
+    <div class="arch-box-wrap">
+      <div class="arch-title">// ARCHITECTURE FLOW</div>
+      <div class="arch-flow">
+        <div class="arch-step">USER DROPS ROM FILE</div><div class="arch-arr">v</div>
+        <div class="arch-step">FileReader API -- base64 encode</div><div class="arch-arr">v</div>
+        <div class="arch-step">localStorage -- persist library</div><div class="arch-arr">v</div>
+        <div class="arch-step">User clicks PLAY</div><div class="arch-arr">v</div>
+        <div class="arch-step">Blob URL created -- decode base64</div><div class="arch-arr">v</div>
+        <div class="arch-step">EmulatorJS loads -- WASM core boots</div><div class="arch-arr">v</div>
+        <div class="arch-step final-step">GAME RUNNING IN BROWSER</div>
+      </div>
+    </div>
+    <div class="page-heading bottom"><span class="ph-b">==================</span></div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="page" id="page-team">
+    <div class="page-heading"><span class="ph-b">===</span><span class="ph-t">THE TEAM</span><span class="ph-b">===</span></div>
+    <div class="team-wrap">
+      <p class="team-intro-text">PIXEL KEEP was built by a 2-person team for the Slashdot Club x IISER Kolkata web development competition.</p>
+      <div class="member-card">
+        <div class="member-avatar-col">
+          <div class="pixel-avatar"><div class="pxa-body"></div></div>
+          <div class="member-badge">LEAD DEVELOPER</div>
+        </div>
+        <div class="member-info-col">
+          <h2 class="member-name">RAJ VIKRANT BRAHMA</h2>
+          <div class="member-roles"><span class="role-tag">DEVELOPER</span><span class="role-tag">DESIGNER</span><span class="role-tag">PROGRAMMER</span></div>
+          <div class="member-bio">
+            <p>Lead developer of PIXEL KEEP. Built the entire codebase from the pixel-art UI system to the ROM library manager and EmulatorJS integration.</p>
+            <p>Passionate about retro gaming, web technologies, and the intersection of nostalgia and modern browser engineering.</p>
+          </div>
+          <div class="member-links">
+            <a href="https://github.com/Batmanrvb" target="_blank" class="mlink github-link"><span>&#9839;</span> github.com/Batmanrvb</a>
+            <a href="javascript:void(0)" class="mlink email-link" onclick="window.location.href='mai'+'lto:'+'rajvikrant888'+'@'+'gmail.com'"><span>&#9993;</span> rajvikrant888 [at] gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-avatar-col">
+          <div class="pixel-avatar avatar-green"><div class="pxa-body pxa-body-2"></div></div>
+          <div class="member-badge badge-green">TEAM MEMBER</div>
+        </div>
+        <div class="member-info-col">
+          <h2 class="member-name">ARPIT AYANG DOLEY</h2>
+          <div class="member-roles"><span class="role-tag">CONTRIBUTOR</span><span class="role-tag">IISER KOLKATA</span></div>
+          <div class="member-bio">
+            <p>Team member and contributor to the PIXEL KEEP project. Part of the Slashdot Club x IISER Kolkata web development initiative.</p>
+          </div>
+          <div class="member-links">
+            <div class="mlink github-link github-soon"><span>&#9839;</span> GitHub -- Coming Soon</div>
+            <a href="javascript:void(0)" class="mlink email-link" onclick="window.location.href='mai'+'lto:'+'aad21ms136'+'@'+'iiserkol.ac.in'"><span>&#9993;</span> aad21ms136 [at] iiserkol.ac.in</a>
+          </div>
+        </div>
+      </div>
+      <div class="orgs-row">
+        <div class="org-card">
+          <img src="IISER-K_Logo.png" alt="IISER Kolkata" class="org-logo org-iiser"/>
+          <div><div class="org-name">IISER KOLKATA</div><p class="org-desc">Indian Institute of Science Education and Research, Kolkata -- a premier research institute under the Ministry of Education, Government of India.</p></div>
+        </div>
+        <div class="org-card">
+          <img src="slashdot_logo.jpg" alt="Slashdot Club" class="org-logo org-slashdot"/>
+          <div><div class="org-name">SLASHDOT CLUB</div><p class="org-desc">The official coding and designing club of IISER Kolkata -- fostering technology, creativity, and open-source development on campus.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="page-heading bottom"><span class="ph-b">==================</span></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="page" id="page-contact">
+    <div class="page-heading"><span class="ph-b">===</span><span class="ph-t">CONTACT</span><span class="ph-b">===</span></div>
+    <div class="contact-layout">
+      <div class="contact-cards-col">
+        <div class="contact-card">
+          <div class="cc-icon">&#9993;&#65039;</div><div class="cc-label">EMAIL</div>
+          <a href="javascript:void(0)" class="cc-value" onclick="window.location.href='mai'+'lto:'+'rajvikrant888'+'@'+'gmail.com'">rajvikrant888 [at] gmail.com</a>
+          <p class="cc-desc">For bug reports, questions, or collaboration enquiries.</p>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">&#9839;</div><div class="cc-label">GITHUB</div>
+          <a href="https://github.com/Batmanrvb" target="_blank" class="cc-value">github.com/Batmanrvb</a>
+          <p class="cc-desc">Source code, issues, and pull requests welcome!</p>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">&#127963;&#65039;</div><div class="cc-label">INSTITUTION</div>
+          <div class="cc-value small-val">IISER KOLKATA</div>
+          <p class="cc-desc">Mohanpur, Nadia, West Bengal -- 741246, India</p>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">&#127919;</div><div class="cc-label">CLUB</div>
+          <div class="cc-value small-val">SLASHDOT CLUB</div>
+          <p class="cc-desc">The coding and designing club of IISER Kolkata.</p>
+        </div>
+      </div>
+      <div class="contact-form-col">
+        <div class="form-window">
+          <div class="window-titlebar"><span class="win-dot r"></span><span class="win-dot y"></span><span class="win-dot g"></span><span class="win-title">SEND_MESSAGE.EXE</span></div>
+          <div class="form-body">
+            <div class="form-group"><label class="form-label">YOUR NAME</label><input type="text" class="form-input" id="f-name" placeholder="ENTER YOUR NAME"/></div>
+            <div class="form-group"><label class="form-label">YOUR EMAIL</label><input type="email" class="form-input" id="f-email" placeholder="YOUR@EMAIL.COM"/></div>
+            <div class="form-group">
+              <label class="form-label">SUBJECT</label>
+              <select class="form-input form-select" id="f-subject">
+                <option value="">SELECT SUBJECT</option>
+                <option>BUG REPORT</option><option>FEATURE REQUEST</option><option>COLLABORATION</option><option>GENERAL ENQUIRY</option>
+              </select>
+            </div>
+            <div class="form-group"><label class="form-label">MESSAGE</label><textarea class="form-input form-textarea" id="f-message" placeholder="TYPE YOUR MESSAGE HERE..."></textarea></div>
+            <button class="pixel-btn primary form-submit" id="form-submit">[ SEND MESSAGE ]</button>
+            <div class="form-status" id="form-status"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-bottom-logos">
+      <img src="IISER-K_Logo.png" alt="IISER Kolkata" class="cbl-logo cbl-iiser"/>
+      <div class="cbl-sep"></div>
+      <img src="slashdot_logo.jpg" alt="Slashdot Club" class="cbl-logo cbl-slashdot"/>
+    </div>
+    <div class="page-heading bottom"><span class="ph-b">==================</span></div>
+  </section>
+
+</main>
+
+<!-- MODAL -->
+<div class="emu-overlay" id="modal" style="display:none">
+  <div class="emu-window">
+    <div class="emu-titlebar">
+      <div class="emu-tl"><span class="emu-icon">&#9654;</span><span class="emu-game-name" id="modal-title">LOADING...</span></div>
+      <div class="emu-tr">
+        <button class="emu-btn" id="fullscreen-btn">FS</button>
+        <button class="emu-btn red" id="close-modal" onclick="closeModal()">X EXIT</button>
+      </div>
+    </div>
+    <div class="emu-screen-wrap"><div class="emu-screen-border"><div id="game-container"></div></div></div>
+    <div class="emu-statusbar"><span class="emu-hint">ARROWS=DPAD | Z=A | X=B | A=Y | S=X | ENTER=START | SHIFT=SELECT</span></div>
+  </div>
+</div>
+
+<div id="toast-area"></div>
+
+<footer class="footer">
+  <div class="footer-logos">
+    <img src="IISER-K_Logo.png" alt="IISER Kolkata" class="fl iiser-fl"/>
+    <img src="slashdot_logo.jpg" alt="Slashdot Club" class="fl slashdot-fl"/>
+  </div>
+  <div class="footer-inner"><span class="fstar">*</span><span>PIXEL KEEP v1.0 | SLASHDOT CLUB x IISER KOLKATA</span><span class="fstar">*</span></div>
+  <p class="footer-legal">ONLY USE ROMS YOU LEGALLY OWN | POWERED BY <a href="https://emulatorjs.org" target="_blank">EMULATORJS</a></p>
+  <p class="footer-copy">2025 RAJ VIKRANT BRAHMA and ARPIT AYANG DOLEY</p>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
