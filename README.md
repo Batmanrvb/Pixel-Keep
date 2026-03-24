@@ -2,15 +2,7 @@
 
 A pixel art / 8-bit styled browser emulator for NES, SNES, Game Boy, and GBA.
 
-## 🚀 Deploy to GitHub Pages
 
-1. **Create a new GitHub repo** (e.g. `pixel-keep`)
-2. **Upload these 3 files** to the repo root:
-   - `index.html`
-   - `style.css`
-   - `app.js`
-3. Go to **Settings → Pages → Branch: main → / (root) → Save**
-4. Live at: `https://YOUR-USERNAME.github.io/pixel-keep/`
 
 ---
 
