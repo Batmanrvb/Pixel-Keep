@@ -209,3 +209,17 @@ header,main,footer{position:relative;z-index:1}
   .arch-step{min-width:unset;width:100%}
   .nav-btn{font-size:.42rem;padding:10px 12px}
 }
+
+/* ── HERO MINI GAME ── */
+.hero-game-wrap{border:6px solid var(--black);box-shadow:0 0 0 3px var(--gold),0 0 0 6px var(--black),8px 8px 0 var(--black);background:var(--black);margin-bottom:40px;overflow:hidden}
+.hero-game-header{background:var(--black);padding:8px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #333;flex-wrap:wrap;gap:8px}
+.hg-title{font-family:var(--font);font-size:.7rem;color:var(--yellow);text-shadow:2px 2px 0 var(--gold);letter-spacing:2px}
+.hg-stats{display:flex;gap:16px;flex-wrap:wrap}
+.hg-stats span{font-family:var(--font);font-size:.5rem;color:var(--cream);letter-spacing:1px}
+.hg-stats span span{color:var(--yellow)}
+#hero-game{display:block;width:100%;cursor:pointer;image-rendering:pixelated;image-rendering:crisp-edges}
+.hg-controls{background:var(--black);border-top:3px solid #333;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.hg-ctrl-hint{font-family:var(--font);font-size:.4rem;color:var(--tan);letter-spacing:1px}
+.hg-mobile-btns{display:flex;gap:8px}
+.hg-mbtn{font-family:var(--font);font-size:.6rem;background:var(--navy-light);border:2px solid var(--sky);color:var(--white);padding:8px 14px;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;touch-action:manipulation;min-width:44px;min-height:44px}
+.hg-mbtn:active{background:var(--sky);color:var(--black)}
