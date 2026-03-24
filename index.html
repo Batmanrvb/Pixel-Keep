@@ -46,21 +46,25 @@
 
   <!-- HOME -->
   <section class="page active" id="page-home">
-    <div class="hero-map">
-      <div class="map-border"><div class="map-inner">
-        <div class="title-screen">
-          <div class="title-line t1">PIXEL KEEP</div>
-          <div class="title-line t2">BROWSER RETRO EMULATOR</div>
-          <div class="title-line t3">NES . SNES . GB . GBA</div>
-          <div class="press-start">-- PRESS START --</div>
+    <!-- MINI PLATFORMER GAME -->
+    <div class="hero-game-wrap">
+      <div class="hero-game-header">
+        <span class="hg-title">&#11088; PIXEL KEEP</span>
+        <div class="hg-stats">
+          <span>SCORE: <span id="hg-score">0</span></span>
+          <span>COINS: <span id="hg-coins">0</span></span>
+          <span>LIVES: <span id="hg-lives">3</span></span>
         </div>
-        <div class="map-deco">
-          <div class="cloud c1">&#9729;</div><div class="cloud c2">&#9729;</div>
-          <div class="tree tr1">&#9824;</div><div class="tree tr2">&#9824;</div><div class="tree tr3">&#9824;</div>
-          <div class="castle-deco">&#127984;</div>
-          <div class="walker">&#129497;</div>
+      </div>
+      <canvas id="hero-game" tabindex="0"></canvas>
+      <div class="hg-controls">
+        <span class="hg-ctrl-hint">ARROW KEYS / WASD = MOVE &amp; JUMP &nbsp;|&nbsp; TAP CANVAS TO PLAY ON MOBILE</span>
+        <div class="hg-mobile-btns">
+          <button class="hg-mbtn" id="hg-left">&#9668;</button>
+          <button class="hg-mbtn" id="hg-jump">JUMP</button>
+          <button class="hg-mbtn" id="hg-right">&#9658;</button>
         </div>
-      </div></div>
+      </div>
     </div>
     <div class="home-intro">
       <div class="intro-box"><div class="intro-icon">&#127918;</div><h3>PLAY CLASSICS</h3><p>Load any NES, SNES, Game Boy, or GBA ROM and play instantly in your browser.</p></div>
